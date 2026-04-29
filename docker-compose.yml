@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-ideal-task-manager
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: thomas_queiroz_pessoal
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: devideal
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+  
+  app:
+    image: golang:1.21
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: go run ./cmd/api/main.go
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: 8080
+      DB_HOST: db
+      DB_USER: admin
+      DB_PASSWORD: devideal
+      DB_NAME: thomas_queiroz_pessoal
+    depends_on:
+      - db
+
+volumes:
+  mysqldata:
