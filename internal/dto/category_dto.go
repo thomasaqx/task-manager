@@ -6,6 +6,6 @@ type CategoryRequest struct {
 }
 
 type CategoryResponse struct {
-	Name string `json:"name"`
-	CategoryId uint `json:"category_id"`
+	Name       string `json:"name"`
+	CategoryId uint   `json:"category_id"`
 }

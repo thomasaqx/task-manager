@@ -2,10 +2,11 @@ package main
 
 import (
 	"os"
-	"github.com/gin-gonic/gin"
-	//"github.com/thomasaqx/task-manager/internal/controller"
 
-	
+	"github.com/gin-gonic/gin"
+
+	//"github.com/thomasaqx/task-manager/internal/controller"
+	"github.com/thomasaqx/task-manager/internal/db"
 )
 
 func main() {
@@ -21,7 +22,9 @@ func main() {
 	//TODO: Registrar Rotas
 	// r.GET("", controller.getTodo)
 
+	db := db.ConnectDb()
+	_ = db
+
 	r.Run(":" + port)
-	
 
 }

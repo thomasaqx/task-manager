@@ -1,7 +1,9 @@
 package model
 
-type Category struct{
-	Id uint `json:"id" db:"id"`
-	Name string `json:"name" db:"name"`
-	UserId uint `json:"user_id" db:"user_id"`
+import "gorm.io/gorm"
+
+type Category struct {
+	gorm.Model
+	Name   string `json:"name"`
+	UserId uint   `json:"user_id"`
 }
