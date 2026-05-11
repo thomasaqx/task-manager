@@ -6,11 +6,12 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/thomasaqx/task-manager/internal/model"
+	"github.com/thomasaqx/task-manager/internal/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
+// isso aqui é o banco
 func ConnectDb() *gorm.DB {
 
 	err := godotenv.Load()
@@ -27,9 +28,9 @@ func ConnectDb() *gorm.DB {
 
 	fmt.Println("Conectado com sucesso via GORM!")
 
-	db.AutoMigrate(&model.User{})
-	db.AutoMigrate(&model.Category{})
-	db.AutoMigrate(&model.Task{})
+	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.Category{})
+	db.AutoMigrate(&models.Task{})
 
 	return db
 }
