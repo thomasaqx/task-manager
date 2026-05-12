@@ -19,12 +19,14 @@ func main() {
 
 	r := gin.Default()
 
-	//TODO: Registrar Rotas
+	//TODO: Register routes
 	// r.GET("", controller.getTodo)
 
+	
 	db := db.ConnectDb()
 	_ = db
 
+	//booting the server
 	r.Run(":" + port)
 
 }

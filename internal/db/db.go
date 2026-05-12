@@ -11,22 +11,22 @@ import (
 	"gorm.io/gorm"
 )
 
-// isso aqui é o banco
+// Creating the database
 func ConnectDb() *gorm.DB {
 
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Erro ao carregar o arquivo .env")
+		log.Fatal("Erro to load .env")
 	}
 
 	dsn := os.Getenv("DB_URL")
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatal("Falha ao conectar no banco:", err)
+		log.Fatal("Failed to connect to the database:", err)
 	}
 
-	fmt.Println("Conectado com sucesso via GORM!")
+	fmt.Println("Successfully connected!")
 
 	db.AutoMigrate(&models.User{})
 	db.AutoMigrate(&models.Category{})
