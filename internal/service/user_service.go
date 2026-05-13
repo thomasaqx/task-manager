@@ -1,8 +1,6 @@
 package service
 
 import (
-	"log"
-
 	"github.com/thomasaqx/task-manager/internal/dto"
 	"github.com/thomasaqx/task-manager/internal/models"
 	"github.com/thomasaqx/task-manager/internal/repository"
@@ -10,17 +8,17 @@ import (
 )
 
 type UserService struct {
-	userRepo *repository.UserRepository
+	userRepository *repository.UserRepository
 }
 
 func NewUserService(repo *repository.UserRepository) *UserService {
-	return &UserService{userRepo: repo}
+	return &UserService{userRepository: repo}
 }
 
 func (s *UserService) CreateUser(req dto.UserRequest) (*models.User, error) {
 	password, err := HashPassword(req.Password)
 	if err != nil {
-		log.Printf("Password is null")
+		return nil, err
 	}
 
 	user := &models.User{
@@ -28,14 +26,27 @@ func (s *UserService) CreateUser(req dto.UserRequest) (*models.User, error) {
 		Email:    req.Email,
 		Password: password,
 	}
-	
-	repoUser, err := s.userRepo.CreateUser(user)
+
+	repoUser, err := s.userRepository.CreateUser(user)
 	if err != nil {
-		log.Printf("Something is wrong with user")
+		return nil, err
 	}
-	_ = repoUser
 
 	return repoUser, err
+}
+
+func (s *UserService) FindAll() ([]models.User, error) {
+	return s.userRepository.FindAll()
+
+}
+
+func (s *UserService) FindByUserId(id uint) (*models.User, error) {
+	return s.userRepository.FindByUserId(id)
+}
+
+func (s *UserService) Delete(id uint) error {
+	return s.userRepository.DeleteById(id)
+
 }
 
 func HashPassword(password string) (string, error) {
