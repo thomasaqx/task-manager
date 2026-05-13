@@ -19,6 +19,7 @@ func NewUserRepository(db *gorm.DB) *UserRepository {
 // CreateUser persists a new User record to the database.
 // It receives a pointer to a User so GORM can populate auto-generated fields (ID, CreatedAt) back into the struct.
 func (r *UserRepository) CreateUser(user *models.User) (*models.User, error) {
+	//inserts
 	err := r.db.Create(user).Error
 	return user, err
 }
