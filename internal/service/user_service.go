@@ -27,12 +27,12 @@ func (s *UserService) CreateUser(req dto.UserRequest) (*models.User, error) {
 		Password: password,
 	}
 
-	repoUser, err := s.userRepository.CreateUser(user)
+	userRepo, err := s.userRepository.CreateUser(user)
 	if err != nil {
 		return nil, err
 	}
 
-	return repoUser, err
+	return userRepo, err
 }
 
 func (s *UserService) FindAll() ([]models.User, error) {

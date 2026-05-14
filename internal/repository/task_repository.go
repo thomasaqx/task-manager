@@ -40,9 +40,9 @@ func (r *TaskRepository) FindAll() ([]models.Task, error) {
 
 }
 
-// DeleteById performs a soft delete on the Task with the given ID.
+// DeleteByTaskId performs a soft delete on the Task with the given ID.
 // Because the Task model embeds gorm.Model, GORM sets DeletedAt instead of removing the row.
-func (r *TaskRepository) DeleteById(id uint) error {
+func (r *TaskRepository) DeleteByTaskId(id uint) error {
 	task := models.Task{}
 	err := r.db.Delete(&task, id).Error
 	return err

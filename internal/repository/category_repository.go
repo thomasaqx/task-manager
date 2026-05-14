@@ -39,21 +39,21 @@ func (r *CategoryRepository) FindAll() ([]models.Category, error) {
 
 }
 
-// DeleteById performs a soft delete on the Category with the given ID.
+// DeleteByCategoryId performs a soft delete on the Category with the given ID.
 // Because the Category model embeds gorm.Model, GORM sets DeletedAt instead of removing the row.
-func (r *CategoryRepository) DeleteById(id uint) error {
+func (r *CategoryRepository) DeleteByCategoryId(id uint) error {
 	category := models.Category{}
 	err := r.db.Delete(&category, id).Error
 	return err
 }
 
-// FindCategoryByUser retrieves all Categories belonging to a specific user.
+// FindCategoryByUserId retrieves all Categories belonging to a specific user.
 //
 // db.Where("user_id = ?", userId) builds a SQL WHERE clause — the "?" is a placeholder
 // that GORM replaces safely with the userId value, preventing SQL injection.
 // db.Find(&category) then executes the full query (WHERE + SELECT *) and scans the
 // result rows directly into the category slice via the pointer.
-func (r *CategoryRepository) FindCategoryByUser(userId uint) ([]models.Category, error) {
+func (r *CategoryRepository) FindCategoryByUserId(userId uint) ([]models.Category, error) {
 	var category = []models.Category{}
 	err := r.db.Where("user_id = ?", userId).Find(&category).Error
 	return category, err
