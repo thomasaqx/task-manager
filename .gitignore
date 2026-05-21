@@ -1,0 +1,13 @@
+# Environment variables
+.env
+
+# Go build output
+bin/
+*.exe
+
+# Go module cache
+vendor/
+
+# IDE
+.vscode/
+.idea/
