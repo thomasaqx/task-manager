@@ -22,9 +22,9 @@ func (r *CategoryRepository) CreateCategory(category *models.Category) (*models.
 	return category, err
 }
 
-// FindByCategoryId retrieves a single Category by its primary key.
+// FindByCategoryID retrieves a single Category by its primary key.
 // Returns a pointer to the found Category, or an error if no record exists.
-func (r *CategoryRepository) FindByCategoryId(id uint) (*models.Category, error) {
+func (r *CategoryRepository) FindByCategoryID(id uint) (*models.Category, error) {
 	category := models.Category{}
 	err := r.db.First(&category, id).Error
 	return &category, err
@@ -39,21 +39,21 @@ func (r *CategoryRepository) GetAllCategories() ([]models.Category, error) {
 
 }
 
-// DeleteByCategoryId performs a soft delete on the Category with the given ID.
+// DeleteByCategoryID performs a soft delete on the Category with the given ID.
 // Because the Category model embeds gorm.Model, GORM sets DeletedAt instead of removing the row.
-func (r *CategoryRepository) DeleteByCategoryId(id uint) error {
+func (r *CategoryRepository) DeleteByCategoryID(id uint) error {
 	category := models.Category{}
 	err := r.db.Delete(&category, id).Error
 	return err
 }
 
-// FindCategoryByUserId retrieves all Categories belonging to a specific user.
+// FindCategoryByUserID retrieves all Categories belonging to a specific user.
 //
 // db.Where("user_id = ?", userId) builds a SQL WHERE clause — the "?" is a placeholder
 // that GORM replaces safely with the userId value, preventing SQL injection.
 // db.Find(&category) then executes the full query (WHERE + SELECT *) and scans the
 // result rows directly into the category slice via the pointer.
-func (r *CategoryRepository) FindCategoryByUserId(userId uint) ([]models.Category, error) {
+func (r *CategoryRepository) FindCategoryByUserID(userId uint) ([]models.Category, error) {
 	var category = []models.Category{}
 	err := r.db.Where("user_id = ?", userId).Find(&category).Error
 	return category, err

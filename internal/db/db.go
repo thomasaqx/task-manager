@@ -19,9 +19,9 @@ func ConnectDb() *gorm.DB {
 	}
 
 	dsn := os.Getenv("DB_URL")
-	 	if dsn == "" {
- 		log.Fatal("DB_URL is not defined")	
- 	}
+	if dsn == "" {
+		log.Fatal("DB_URL is not defined")
+	}
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
@@ -30,9 +30,7 @@ func ConnectDb() *gorm.DB {
 
 	fmt.Println("Successfully connected!")
 
-	db.AutoMigrate(&models.User{})
-	db.AutoMigrate(&models.Category{})
-	db.AutoMigrate(&models.Task{})
+	db.AutoMigrate(&models.User{}, &models.Category{}, &models.Task{})
 
 	return db
 }

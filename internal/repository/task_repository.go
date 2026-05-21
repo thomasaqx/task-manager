@@ -22,9 +22,9 @@ func (r *TaskRepository) CreateTask(task *models.Task) (*models.Task, error) {
 	return task, err
 }
 
-// FindByTaskId retrieves a single Task by its primary key.
+// FindByTaskID retrieves a single Task by its primary key.
 // Returns a pointer to the found Task, or an error if no record exists.
-func (r *TaskRepository) FindByTaskId(id uint) (*models.Task, error) {
+func (r *TaskRepository) FindByTaskID(id uint) (*models.Task, error) {
 	task := models.Task{}
 	err := r.db.First(&task, id).Error
 	return &task, err
@@ -39,21 +39,21 @@ func (r *TaskRepository) GetAllTasks() ([]models.Task, error) {
 
 }
 
-// DeleteByTaskId performs a soft delete on the Task with the given ID.
+// DeleteByTaskID performs a soft delete on the Task with the given ID.
 // Because the Task model embeds gorm.Model, GORM sets DeletedAt instead of removing the row.
-func (r *TaskRepository) DeleteByTaskId(id uint) error {
+func (r *TaskRepository) DeleteByTaskID(id uint) error {
 	task := models.Task{}
 	err := r.db.Delete(&task, id).Error
 	return err
 }
 
-// FindTaskByUserId retrieves all Tasks belonging to a specific user.
+// FindTaskByUserID retrieves all Tasks belonging to a specific user.
 //
 // db.Where("user_id = ?", userId) builds a SQL WHERE clause — the "?" is a placeholder
 // that GORM replaces safely with the userId value, preventing SQL injection.
 // db.Find(&task) then executes the full query (WHERE + SELECT *) and scans the
 // result rows directly into the task slice via the pointer.
-func (r *TaskRepository) FindTaskByUserId(userId uint) ([]models.Task, error) {
+func (r *TaskRepository) FindTaskByUserID(userId uint) ([]models.Task, error) {
 	var task = []models.Task{}
 	err := r.db.Where("user_id = ?", userId).Find(&task).Error
 	return task, err

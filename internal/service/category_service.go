@@ -18,7 +18,7 @@ func (s *CategoryService) CreateCategory(req dto.CategoryRequest) (*models.Categ
 
 	category := models.Category{
 		Name:   req.Name,
-		UserId: req.UserId,
+		UserID: req.UserId,
 	}
 
 	categoryRepo, err := s.categoryRepository.CreateCategory(&category)
@@ -31,7 +31,7 @@ func (s *CategoryService) CreateCategory(req dto.CategoryRequest) (*models.Categ
 }
 
 func (s *CategoryService) DeleteByCategoryId(id uint) error {
-	return s.categoryRepository.DeleteByCategoryId(id)
+	return s.categoryRepository.DeleteByCategoryID(id)
 }
 
 func (s *CategoryService) GetAllCategories() ([]models.Category, error) {
@@ -39,9 +39,9 @@ func (s *CategoryService) GetAllCategories() ([]models.Category, error) {
 }
 
 func (s *CategoryService) FindByCategoryId(id uint) (*models.Category, error) {
-	return s.categoryRepository.FindByCategoryId(id)
+	return s.categoryRepository.FindByCategoryID(id)
 }
 
 func (s *CategoryService) FindCategoryByUserId(userId uint) ([]models.Category, error) {
-	return s.categoryRepository.FindCategoryByUserId(userId)
+	return s.categoryRepository.FindCategoryByUserID(userId)
 }

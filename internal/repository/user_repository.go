@@ -32,7 +32,7 @@ func (r *UserRepository) FindAll() ([]models.User, error) {
 	return users, err
 }
 
-// FindByUserId retrieves a single User by its primary key.
+// FindByUserID retrieves a single User by its primary key.
 // Returns a pointer to the found User, or an error if no record exists.
 //
 // To filter by non-primary-key fields, combine db.Where with db.First or db.Find:
@@ -40,7 +40,7 @@ func (r *UserRepository) FindAll() ([]models.User, error) {
 //	db.Where("email = ?", email).First(&user)
 //
 // The "?" placeholder is safely replaced by GORM, preventing SQL injection.
-func (r *UserRepository) FindByUserId(id uint) (*models.User, error) {
+func (r *UserRepository) FindByUserID(id uint) (*models.User, error) {
 	var user models.User
 	err := r.db.First(&user, id).Error
 	return &user, err

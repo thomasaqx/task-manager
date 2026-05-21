@@ -41,7 +41,7 @@ func (s *UserService) GetAllUsers() ([]models.User, error) {
 }
 
 func (s *UserService) FindByUserId(id uint) (*models.User, error) {
-	return s.userRepository.FindByUserId(id)
+	return s.userRepository.FindByUserID(id)
 }
 
 func (s *UserService) DeleteByUserId(id uint) error {

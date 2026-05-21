@@ -34,7 +34,7 @@ func (s *TaskService) CreateTask(req dto.TaskRequest) (*models.Task, error) {
 }
 
 func (s *TaskService) DeleteByTaskId(id uint) error {
-	err := s.taskRepository.DeleteByTaskId(id)
+	err := s.taskRepository.DeleteByTaskID(id)
 	return err
 }
 
@@ -43,9 +43,9 @@ func (s *TaskService) GetAllTasks() ([]models.Task, error) {
 }
 
 func (s *TaskService) FindByTaskId(id uint) (*models.Task, error) {
-	return s.taskRepository.FindByTaskId(id)
+	return s.taskRepository.FindByTaskID(id)
 }
 
 func (s *TaskService) FindTaskByUserId(userId uint) ([]models.Task, error) {
-	return s.taskRepository.FindTaskByUserId(userId)
+	return s.taskRepository.FindTaskByUserID(userId)
 }
