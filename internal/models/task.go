@@ -26,6 +26,6 @@ type Task struct {
 	Status      TaskStatus `json:"status"`
 	Priority    Priority   `json:"priority"`
 	DueDate     time.Time  `json:"due_date"`
-	UserId      *uint      `json:"user_id"`
-	CategoryId  *uint      `json:"category_id"`
+	UserID      *uint      `json:"user_id"`
+	CategoryID  *uint      `json:"category_id"`
 }
