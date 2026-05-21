@@ -11,15 +11,17 @@ import (
 	"gorm.io/gorm"
 )
 
-// Creating the database
+// Creating the database connection
 func ConnectDb() *gorm.DB {
 
-	err := godotenv.Load()
-	if err != nil {
+	if err := godotenv.Load(); err != nil {
 		log.Fatal("Erro to load .env")
 	}
 
 	dsn := os.Getenv("DB_URL")
+	 	if dsn == "" {
+ 		log.Fatal("DB_URL is not defined")	
+ 	}
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
