@@ -38,9 +38,9 @@ func (c *CategoryController) CreateCategory(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, gin.H{"data": category})
 }
 
-func (c *CategoryController) FindAll(ctx *gin.Context) {
+func (c *CategoryController) GetAllCategories(ctx *gin.Context) {
 
-	category, err := c.categoryService.FindAll()
+	category, err := c.categoryService.GetAllCategories()
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

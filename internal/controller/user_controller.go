@@ -38,7 +38,7 @@ func (c *UserController) CreateUser(ctx *gin.Context) {
 }
 
 func (c *UserController) GetAllUsers(ctx *gin.Context) {
-	users, err := c.userService.FindAll()
+	users, err := c.userService.GetAllUsers()
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -78,7 +78,7 @@ func (c *UserController) DeleteUser(ctx *gin.Context) {
 
 	id := uint(parsedId)
 
-	err = c.userService.Delete(id)
+	err = c.userService.DeleteByUserId(id)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

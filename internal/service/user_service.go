@@ -35,7 +35,7 @@ func (s *UserService) CreateUser(req dto.UserRequest) (*models.User, error) {
 	return userRepo, err
 }
 
-func (s *UserService) FindAll() ([]models.User, error) {
+func (s *UserService) GetAllUsers() ([]models.User, error) {
 	return s.userRepository.FindAll()
 
 }
@@ -44,8 +44,8 @@ func (s *UserService) FindByUserId(id uint) (*models.User, error) {
 	return s.userRepository.FindByUserId(id)
 }
 
-func (s *UserService) Delete(id uint) error {
-	return s.userRepository.DeleteById(id)
+func (s *UserService) DeleteByUserId(id uint) error {
+	return s.userRepository.DeleteByUserId(id)
 
 }
 

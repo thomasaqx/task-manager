@@ -46,9 +46,9 @@ func (r *UserRepository) FindByUserId(id uint) (*models.User, error) {
 	return &user, err
 }
 
-// DeleteById performs a soft delete on the User with the given ID.
+// DeleteByUserId performs a soft delete on the User with the given ID.
 // Because the User model embeds gorm.Model, GORM sets DeletedAt instead of removing the row.
-func (r *UserRepository) DeleteById(id uint) error {
+func (r *UserRepository) DeleteByUserId(id uint) error {
 	var user models.User
 	err := r.db.Delete(&user, id).Error
 	return err

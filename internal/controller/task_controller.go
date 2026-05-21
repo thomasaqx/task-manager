@@ -34,9 +34,9 @@ func (c *TaskController) CreateTask(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, gin.H{"data": task})
 }
 
-func (c *TaskController) FindAll(ctx *gin.Context) {
+func (c *TaskController) GetAllTasks(ctx *gin.Context) {
 
-	tasks, err := c.taskService.FindAll()
+	tasks, err := c.taskService.GetAllTasks()
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -65,7 +65,7 @@ func (c *TaskController) FindByTaskId(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"data": task})
 }
 
-func (c *TaskController) FindTaskByUser(ctx *gin.Context) {
+func (c *TaskController) FindTaskByUserId(ctx *gin.Context) {
 	userIdStr := ctx.Param("userId")
 
 	parsedId, err := strconv.ParseUint(userIdStr, 10, 64)
@@ -76,7 +76,7 @@ func (c *TaskController) FindTaskByUser(ctx *gin.Context) {
 
 	userId := uint(parsedId)
 
-	task, err := c.taskService.FindTaskByUser(userId)
+	task, err := c.taskService.FindTaskByUserId(userId)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

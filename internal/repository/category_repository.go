@@ -30,9 +30,9 @@ func (r *CategoryRepository) FindByCategoryId(id uint) (*models.Category, error)
 	return &category, err
 }
 
-// FindAll retrieves all Category records from the database.
+// GetAllCategories retrieves all Category records from the database.
 // Returns a slice of Categories, which is empty (not nil) when no records are found.
-func (r *CategoryRepository) FindAll() ([]models.Category, error) {
+func (r *CategoryRepository) GetAllCategories() ([]models.Category, error) {
 	var categories = []models.Category{}
 	err := r.db.Find(&categories).Error
 	return categories, err

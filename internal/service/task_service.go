@@ -10,7 +10,7 @@ type TaskService struct {
 	taskRepository *repository.TaskRepository
 }
 
-func NewTaskService(repo *repository.TaskRepository ) *TaskService{
+func NewTaskService(repo *repository.TaskRepository) *TaskService {
 	return &TaskService{taskRepository: repo}
 }
 
@@ -33,19 +33,19 @@ func (s *TaskService) CreateTask(req dto.TaskRequest) (*models.Task, error) {
 	return taskRepo, err
 }
 
-func (s *TaskService) DeleteByTaskId(id uint) error{
+func (s *TaskService) DeleteByTaskId(id uint) error {
 	err := s.taskRepository.DeleteByTaskId(id)
 	return err
 }
 
-func (s *TaskService) FindAll() ([]models.Task, error){
-	return s.taskRepository.FindAll()
+func (s *TaskService) GetAllTasks() ([]models.Task, error) {
+	return s.taskRepository.GetAllTasks()
 }
 
-func (s *TaskService) FindByTaskId(id uint) (*models.Task, error){
+func (s *TaskService) FindByTaskId(id uint) (*models.Task, error) {
 	return s.taskRepository.FindByTaskId(id)
 }
 
-func (s *TaskService) FindTaskByUser(userId uint) ([]models.Task, error){
-	return s.taskRepository.FindTaskByUser(userId)
+func (s *TaskService) FindTaskByUserId(userId uint) ([]models.Task, error) {
+	return s.taskRepository.FindTaskByUserId(userId)
 }

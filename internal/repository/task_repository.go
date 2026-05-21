@@ -5,7 +5,6 @@ import (
 	"gorm.io/gorm"
 )
 
-//
 type TaskRepository struct {
 	db *gorm.DB
 }
@@ -31,9 +30,9 @@ func (r *TaskRepository) FindByTaskId(id uint) (*models.Task, error) {
 	return &task, err
 }
 
-// FindAll retrieves all Task records from the database.
+// GetAllTasks retrieves all Task records from the database.
 // Returns a slice of Tasks, which is empty (not nil) when no records are found.
-func (r *TaskRepository) FindAll() ([]models.Task, error) {
+func (r *TaskRepository) GetAllTasks() ([]models.Task, error) {
 	var tasks = []models.Task{}
 	err := r.db.Find(&tasks).Error
 	return tasks, err
@@ -48,13 +47,13 @@ func (r *TaskRepository) DeleteByTaskId(id uint) error {
 	return err
 }
 
-// FindTaskByUser retrieves all Tasks belonging to a specific user.
+// FindTaskByUserId retrieves all Tasks belonging to a specific user.
 //
 // db.Where("user_id = ?", userId) builds a SQL WHERE clause — the "?" is a placeholder
 // that GORM replaces safely with the userId value, preventing SQL injection.
 // db.Find(&task) then executes the full query (WHERE + SELECT *) and scans the
 // result rows directly into the task slice via the pointer.
-func (r *TaskRepository) FindTaskByUser(userId uint) ([]models.Task, error) {
+func (r *TaskRepository) FindTaskByUserId(userId uint) ([]models.Task, error) {
 	var task = []models.Task{}
 	err := r.db.Where("user_id = ?", userId).Find(&task).Error
 	return task, err
