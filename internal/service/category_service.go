@@ -18,7 +18,7 @@ func (s *CategoryService) CreateCategory(req dto.CategoryRequest) (*models.Categ
 
 	category := models.Category{
 		Name:   req.Name,
-		UserID: req.UserId,
+		UserID: req.UserID,
 	}
 
 	categoryRepo, err := s.categoryRepository.CreateCategory(&category)

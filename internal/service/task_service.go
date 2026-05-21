@@ -21,8 +21,8 @@ func (s *TaskService) CreateTask(req dto.TaskRequest) (*models.Task, error) {
 		Status:      req.Status,
 		Priority:    req.Priority,
 		DueDate:     req.DueDate,
-		UserId:      &req.UserId,
-		CategoryId:  &req.CategoryId,
+		UserID:      &req.UserId,
+		CategoryID:  &req.CategoryId,
 	}
 
 	taskRepo, err := s.taskRepository.CreateTask(&task)
