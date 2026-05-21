@@ -14,8 +14,7 @@ type UserController struct {
 }
 
 func NewUserController(userSvc *service.UserService) *UserController {
-	userController := UserController{userService: userSvc}
-	return &userController
+	return &UserController{userService: userSvc}
 }
 
 func (c *UserController) CreateUser(ctx *gin.Context) {
@@ -87,5 +86,3 @@ func (c *UserController) DeleteUser(ctx *gin.Context) {
 
 	ctx.Status(http.StatusNoContent)
 }
-
-
