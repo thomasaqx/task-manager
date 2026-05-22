@@ -4,7 +4,7 @@ API REST completa para gerenciamento de tarefas desenvolvida em Go, utilizando a
 
 ## 🚀 Tecnologias
 
-- **Go 1.25.4** - Linguagem de programação
+- **Go 1.25** - Linguagem de programação
 - **Gin** - Framework web HTTP
 - **GORM** - ORM para Go
 - **MySQL 8.0** - Banco de dados relacional
