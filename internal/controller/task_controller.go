@@ -66,7 +66,7 @@ func (c *TaskController) FindByTaskId(ctx *gin.Context) {
 }
 
 func (c *TaskController) FindTaskByUserId(ctx *gin.Context) {
-	userIdStr := ctx.Param("userId")
+	userIdStr := ctx.Param("id")
 
 	parsedId, err := strconv.ParseUint(userIdStr, 10, 64)
 	if err != nil {

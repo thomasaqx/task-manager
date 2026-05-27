@@ -94,7 +94,7 @@ func (c *CategoryController) DeleteByCategoryId(ctx *gin.Context) {
 
 func (c *CategoryController) FindCategoryByUserId(ctx *gin.Context) {
 
-	userIdStr := ctx.Param("userId")
+	userIdStr := ctx.Param("id")
 
 	parsedId, err := strconv.ParseUint(userIdStr, 10, 64)
 	if err != nil {
